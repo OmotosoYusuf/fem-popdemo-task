@@ -4795,22 +4795,26 @@ var svg = function (element, props) {
 
 exports.svg = svg;
 },{"tslib":"node_modules/tslib/tslib.es6.js","@popmotion/popcorn":"node_modules/@popmotion/popcorn/dist/popcorn.es.js","framesync":"node_modules/framesync/dist/framesync.es.js","style-value-types":"node_modules/style-value-types/dist/style-value-types.es.js","@popmotion/easing":"node_modules/@popmotion/easing/dist/easing.es.js","stylefire":"node_modules/stylefire/dist/stylefire.es.js","hey-listen":"node_modules/hey-listen/dist/hey-listen.es.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"animation.js":[function(require,module,exports) {
-"use strict";
+var popmotion = require('popmotion');
 
-var _popmotion = require("popmotion");
-
+var _window$popmotion = window.popmotion,
+    styler = _window$popmotion.styler,
+    spring = _window$popmotion.spring,
+    listen = _window$popmotion.listen,
+    pointer = _window$popmotion.pointer,
+    value = _window$popmotion.value;
 var ball = document.querySelector('.box');
-var divStyler = (0, _popmotion.styler)(ball);
-var ballXY = (0, _popmotion.value)({
+var divStyler = styler(ball);
+var ballXY = value({
   x: 0,
   y: 0
 }, divStyler.set);
-(0, _popmotion.listen)(ball, 'mousedown touchstart').start(function (e) {
+listen(ball, 'mousedown touchstart').start(function (e) {
   e.preventDefault();
-  (0, _popmotion.pointer)(ballXY.get()).start(ballXY);
+  pointer(ballXY.get()).start(ballXY);
 });
-(0, _popmotion.listen)(document, 'mouseup touchend').start(function () {
-  (0, _popmotion.spring)({
+listen(document, 'mouseup touchend').start(function () {
+  spring({
     from: ballXY.get(),
     velocity: ballXY.getVelocity(),
     to: {
@@ -4850,7 +4854,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61090" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65382" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
